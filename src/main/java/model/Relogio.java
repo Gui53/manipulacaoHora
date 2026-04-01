@@ -45,15 +45,20 @@ public class Relogio {
     }
 
     public String incrementaSegundo() {
-        int minutos = 0;
+        int hora = 0;
         int minS = 0;
+        
+        while (minuto > 59){
+            minuto = minuto - 60;
+            hora += 1;
+        }
         
         while (segundo > 59) {
             segundo = segundo - 60;
-            minutos+=1;
+            minuto+=1;
         }
         
-        return "00:"+minutos + ":" + segundo;
+        return hora + ":"+minuto + ":" + segundo;
 
     }
 }
