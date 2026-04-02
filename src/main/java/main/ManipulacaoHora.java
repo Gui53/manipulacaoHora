@@ -36,6 +36,9 @@ public class ManipulacaoHora {
         System.out.println("Digite os minutos");
         relogio.setMinuto(Integer.parseInt(sc.nextLine()));
         
-        System.out.println("Tempo: " + relogio.incrementaSegundo());
+        System.out.println("Digite as horas");
+        relogio.setHora(Integer.parseInt(sc.nextLine()));
+        
+        System.out.println(relogio.incrementaSegundo());
     }
 }

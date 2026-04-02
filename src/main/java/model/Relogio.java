@@ -45,20 +45,58 @@ public class Relogio {
     }
 
     public String incrementaSegundo() {
-        int hora = 0;
         int minS = 0;
-        
-        while (minuto > 59){
+
+        while (hora > 23) {
+            hora = hora - 24;
+        }
+
+        while (minuto > 59) {
             minuto = minuto - 60;
             hora += 1;
         }
-        
         while (segundo > 59) {
             segundo = segundo - 60;
-            minuto+=1;
+            minuto += 1;
         }
-        
-        return hora + ":"+minuto + ":" + segundo;
 
+        if (segundo < 10 && segundo >= 0 && minuto < 10 && minuto >= 0 && hora < 10 && hora >= 0) {
+            return "Tempo: 0" + hora + ":0" + minuto + ":0" + segundo;
+
+        } else {
+            if (segundo < 10 && segundo >= 0 && minuto < 10 && minuto >= 10) {
+                return "Tempo: " + hora + ":0" + minuto + ":0" + segundo;
+            } else {
+                if (minuto < 10 && minuto >= 0 && hora < 10 && hora <= 0) {
+                    return "Tempo: 0" + hora + ":0" + minuto + ":" + segundo;
+
+                } else {
+                    if (hora < 10 && hora >= 0 && segundo < 10 && segundo >= 0) {
+                        return "Tempo: 0" + hora + ":" + minuto + ":0" + segundo;
+
+                    } else {
+                        if (hora < 10 && hora >= 0) {
+                            return "Tempo: 0" + hora + ":" + minuto + ":" + segundo;
+
+                        } else {
+                            if (minuto < 10 && minuto >= 0) {
+                                return "Tempo: " + hora + ":0" + minuto + ":" + segundo;
+
+                            } else {
+                                if (segundo >= 0 && segundo < 10) {
+                                    return "Tempo: " + hora + ":" + minuto + ":0" + segundo;
+
+                                } else {
+                                    return "Tempo: " + hora + ":" + minuto + ":" + segundo;
+
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 }
