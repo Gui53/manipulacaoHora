@@ -3,17 +3,47 @@ package model;
 public class Relogio {
 
     private int hora;
+    private int decrementaHora;
     private int minuto;
+    private int decrementaMinuto;
     private int segundo;
+    private int decrementaSegundo;
 
     public Relogio() {
-        this(0, 0, 0);
+        this(0, 0, 0, 0, 0, 0);
     }
 
-    public Relogio(int hora, int minuto, int segundo) {
+    public Relogio(int hora, int decrementaHora, int minuto, int decrementaMinuto, int segundo, int decrementaSegundo) {
         this.hora = hora;
+        this.decrementaHora = decrementaHora;
         this.minuto = minuto;
+        this.decrementaMinuto = decrementaMinuto;
         this.segundo = segundo;
+        this.decrementaSegundo = decrementaSegundo;
+    }
+
+    public int getDecrementaHora() {
+        return decrementaHora;
+    }
+
+    public void setDecrementaHora(int decrementaHora) {
+        this.decrementaHora = decrementaHora;
+    }
+
+    public int getDecrementaMinuto() {
+        return decrementaMinuto;
+    }
+
+    public void setDecrementaMinuto(int decrementaMinuto) {
+        this.decrementaMinuto = decrementaMinuto;
+    }
+
+    public int getDecrementaSegundo() {
+        return decrementaSegundo;
+    }
+
+    public void setDecrementaSegundo(int decrementaSegundo) {
+        this.decrementaSegundo = decrementaSegundo;
     }
 
     public int getHora() {
@@ -44,30 +74,47 @@ public class Relogio {
         return ((hora * 60 * 60) + (minuto * 60) + segundo);
     }
 
-    public String incrementaSegundo() {
-        int minS = 0;
+    public void incrementaTempo() {
+        
+        minuto += segundo / 60;
+        segundo = segundo % 60;
 
-        while (hora > 23) {
-            hora = hora - 24;
+        hora += minuto / 60;
+        minuto = minuto % 60;
+
+        hora = hora % 24;
+
+    }
+
+    public void decrementaTempo() {
+        hora = (hora - decrementaHora) % 24;
+
+        if (hora < 0) {
+            hora += 24;
         }
 
-        while (minuto > 59) {
-            minuto = minuto - 60;
-            hora += 1;
-        }
-        while (segundo > 59) {
-            segundo = segundo - 60;
-            minuto += 1;
+        minuto = (minuto - decrementaMinuto) % 60;
+
+        if (minuto < 0) {
+            minuto += 60;
         }
 
+        segundo = (segundo - decrementaSegundo) % 60;
+
+        if (segundo < 0) {
+            segundo += 60;
+        }
+    }
+
+    public String formato() {
         if (segundo < 10 && segundo >= 0 && minuto < 10 && minuto >= 0 && hora < 10 && hora >= 0) {
             return "Tempo: 0" + hora + ":0" + minuto + ":0" + segundo;
 
         } else {
-            if (segundo < 10 && segundo >= 0 && minuto < 10 && minuto >= 10) {
+            if (segundo < 10 && segundo >= 0 && minuto < 10 && minuto >= 0) {
                 return "Tempo: " + hora + ":0" + minuto + ":0" + segundo;
             } else {
-                if (minuto < 10 && minuto >= 0 && hora < 10 && hora <= 0) {
+                if (minuto < 10 && minuto >= 0 && hora < 10 && hora >= 0) {
                     return "Tempo: 0" + hora + ":0" + minuto + ":" + segundo;
 
                 } else {
