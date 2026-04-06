@@ -18,17 +18,6 @@ public class ManipulacaoHora {
         Scanner sc = new Scanner(System.in);
         
         Relogio relogio = new Relogio();
-         
-        /*System.out.println("Digite a hora");
-        relogio.setHora(Integer.parseInt(sc.nextLine()));
-        
-        System.out.println("Digite os minutos");
-        relogio.setMinuto(Integer.parseInt(sc.nextLine()));
-        
-        System.out.println("Digite os segundos");
-        relogio.setSegundo(Integer.parseInt(sc.nextLine()));
-        
-        System.out.println(relogio.tempoSegundos());*/
         
         System.out.println("Digite os segundos");
         relogio.setSegundo(Integer.parseInt(sc.nextLine()));
@@ -39,6 +28,8 @@ public class ManipulacaoHora {
         System.out.println("Digite as horas");
         relogio.setHora(Integer.parseInt(sc.nextLine()));
         
-        System.out.println(relogio.incrementaSegundo());
+        relogio.incrementaTempo();
+        
+        System.out.println(relogio.formato());
     }
 }
